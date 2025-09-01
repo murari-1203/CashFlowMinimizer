@@ -25,10 +25,35 @@ If no direct payment mode is shared between two banks, a **World Bank (intermedi
 ---
 
 ## 🚀 How It Works
-1. Input the number of banks.
-2. Provide each bank’s:
-   - Name  
-   - Number of supported payment modes  
-   - The list of payment modes
-3. Input the number of transactions.
-4. Provide each transaction in the format:  
+
+1. **Input Bank Details**
+   - Enter the number of banks.  
+   - For each bank, provide:  
+     - Bank name  
+     - Number of supported payment modes  
+     - List of payment modes  
+
+2. **Input Transactions**
+   - Enter the number of transactions.  
+   - For each transaction, provide:  
+     ```
+     <SenderBank> <ReceiverBank> <Amount>
+     ```
+
+3. **Compute Net Balances**
+   - The system calculates each bank’s **net amount**:  
+     - Positive → Bank should receive money  
+     - Negative → Bank needs to pay money  
+     - Zero → No dues  
+
+4. **Match Transactions**
+   - Payers and receivers are matched:  
+     - If they **share a common payment mode**, the transaction is settled directly.  
+     - If **no payment mode matches**, the system routes the transaction via the **World Bank** (which supports all payment modes).  
+
+5. **Minimize Transactions**
+   - The algorithm ensures that the **fewest number of transactions** are made while clearing all dues.  
+
+6. **Display Results**
+   - The system prints the **final minimized list of transactions** with payment modes used.
+  
